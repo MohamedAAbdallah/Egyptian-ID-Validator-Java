@@ -4,7 +4,8 @@ import com.mohamedaabdallah.egyptianid.components.*;
 import com.mohamedaabdallah.egyptianid.internal.*;
 
 public class EgyptianIDValidator {
-    public static void validate(String id) {
+    public static boolean validate(String id) {
         // TODO: Integrate format check, checksum, component parsing
+        return id != null && !id.isEmpty();
     }
 }
