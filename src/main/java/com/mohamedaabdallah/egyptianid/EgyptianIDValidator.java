@@ -13,7 +13,7 @@ public class EgyptianIDValidator {
             "(?<month>0[1-9]|1[0-2])" +
             "(?<day>0[1-9]|[12]\\d|3[01])" +
             "(?<governorate>0[1-9]|[1-3]\\d|88)" +
-            "(?<unique_number>(?!000)\\d{3})" +
+            "(?<uniqueNumber>(?!000)\\d{3})" +
             "(?<gender>\\d)" +
             "(\\d)$"
     );
