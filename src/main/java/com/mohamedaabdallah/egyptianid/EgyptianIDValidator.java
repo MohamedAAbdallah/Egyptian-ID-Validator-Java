@@ -65,36 +65,65 @@ public class EgyptianIDValidator {
     }
 
     private static String getGovernorateName(int code) {
-        return switch (code) {
-            case 1 -> "Cairo";
-            case 2 -> "Alexandria";
-            case 3 -> "Port Said";
-            case 4 -> "Suez";
-            case 11 -> "Damietta";
-            case 12 -> "Dakahlia";
-            case 13 -> "Sharqia";
-            case 14 -> "Qalyubia";
-            case 15 -> "Kafr El Sheikh";
-            case 16 -> "Gharbia";
-            case 17 -> "Monufia";
-            case 18 -> "Beheira";
-            case 19 -> "Ismailia";
-            case 21 -> "Giza";
-            case 22 -> "Beni Suef";
-            case 23 -> "Faiyum";
-            case 24 -> "Minya";
-            case 25 -> "Asyut";
-            case 26 -> "Sohag";
-            case 27 -> "Qena";
-            case 28 -> "Aswan";
-            case 29 -> "Luxor";
-            case 31 -> "Red Sea";
-            case 32 -> "New Valley";
-            case 33 -> "Matruh";
-            case 34 -> "North Sinai";
-            case 35 -> "South Sinai";
-            case 88 -> "Foreigners";
-            default -> throw new IllegalArgumentException("Unknown governorate code: " + code);
-        };
+        switch (code) {
+            case 1:
+                return "Cairo";
+            case 2:
+                return "Alexandria";
+            case 3:
+                return "Port Said";
+            case 4:
+                return "Suez";
+            case 11:
+                return "Damietta";
+            case 12:
+                return "Dakahlia";
+            case 13:
+                return "Sharqia";
+            case 14:
+                return "Qalyubia";
+            case 15:
+                return "Kafr El Sheikh";
+            case 16:
+                return "Gharbia";
+            case 17:
+                return "Monufia";
+            case 18:
+                return "Beheira";
+            case 19:
+                return "Ismailia";
+            case 21:
+                return "Giza";
+            case 22:
+                return "Beni Suef";
+            case 23:
+                return "Faiyum";
+            case 24:
+                return "Minya";
+            case 25:
+                return "Asyut";
+            case 26:
+                return "Sohag";
+            case 27:
+                return "Qena";
+            case 28:
+                return "Aswan";
+            case 29:
+                return "Luxor";
+            case 31:
+                return "Red Sea";
+            case 32:
+                return "New Valley";
+            case 33:
+                return "Matruh";
+            case 34:
+                return "North Sinai";
+            case 35:
+                return "South Sinai";
+            case 88:
+                return "Foreigners";
+            default:
+                throw new IllegalArgumentException("Unknown governorate code: " + code);
+        }
     }
 }
