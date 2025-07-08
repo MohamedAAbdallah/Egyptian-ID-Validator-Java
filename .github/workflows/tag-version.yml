@@ -2,7 +2,7 @@ name: Automated Release
 
 on:
   push:
-    branches: [main]
+    branches: [test-tag]
     paths:
         - "pom.xml"
 
