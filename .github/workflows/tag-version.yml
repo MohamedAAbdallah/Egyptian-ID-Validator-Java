@@ -21,27 +21,33 @@ jobs:
       - name: Read version from pom.xml
         id: get_version
         run: |
-          VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
+          VERSION=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "Tag version: v$VERSION"
 
       - name: Generate changelog from last tag
         id: changelog
         run: |
-          LAST_TAG=$(git describe --tags --abbrev=0 || echo "none")
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "none")
           echo "Last tag: $LAST_TAG"
+          
           if [ "$LAST_TAG" = "none" ]; then
             git log --pretty=format:"- %s" > CHANGES.md
           else
             git log "$LAST_TAG"..HEAD --pretty=format:"- %s" > CHANGES.md
           fi
+
           echo "CHANGELOG<<EOF" >> $GITHUB_ENV
           cat CHANGES.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Create Git Tag and Push
+      - name: Create Git tag and push
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git tag -a "v${{ env.VERSION }}" -m "${{ env.CHANGELOG }}"
-          git push origin "v${{ env.VERSION }}"
+
+          TAG="v${{ env.VERSION }}"
+          echo "Creating tag: $TAG"
+
+          git tag -a "$TAG" -m "${{ env.CHANGELOG }}"
+          git push origin "$TAG"
