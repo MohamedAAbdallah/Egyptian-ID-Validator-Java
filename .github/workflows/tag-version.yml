@@ -3,8 +3,8 @@ name: Automated Release
 on:
   push:
     branches: [test-tag]
-    paths:
-        - "pom.xml"
+    # paths:
+    #     - "pom.xml"
 
 
 jobs:
