@@ -2,9 +2,9 @@ name: Automated Release
 
 on:
   push:
-    branches: [test-tag]
-    # paths:
-    #     - "pom.xml"
+    branches: [main]
+    paths:
+        - "pom.xml"
 
 
 jobs:
@@ -48,5 +48,4 @@ jobs:
           name: Release v${{ env.VERSION }}
           body: |
             Automated release for version v${{ env.VERSION }}.
-            Built with Maven and deployed via GitHub Actions.
           files: target/*.jar
