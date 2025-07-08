@@ -8,8 +8,8 @@ on:
 
 
 jobs:
-  tag:
-    name: Create Git Tag from pom.xml version
+  release:
+    name: Tag + Build + Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -18,20 +18,35 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Read version from pom.xml
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Extract version from pom.xml
         id: get_version
         run: |
           VERSION=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "Tag version: v$VERSION"
 
-      - name: Create Git tag and push
+      - name: Build JAR
+        run: mvn clean package
+
+      - name: Create Git tag
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git tag -a "v${{ env.VERSION }}" -m "Release v${{ env.VERSION }}"
+          git push origin "v${{ env.VERSION }}"
 
-          TAG="v${{ env.VERSION }}"
-          echo "Creating tag: $TAG"
-
-          git tag -a "$TAG" -m "Release version $TAG"
-          git push origin "$TAG"
+      - name: Create GitHub Release and Upload JAR
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          body: |
+            Automated release for version v${{ env.VERSION }}.
+            Built with Maven and deployed via GitHub Actions.
+          files: target/*.jar
