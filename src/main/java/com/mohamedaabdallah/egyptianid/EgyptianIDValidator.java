@@ -9,22 +9,24 @@ public class EgyptianIDValidator {
 
     private static final Pattern ID_PATTERN = Pattern.compile(
             "^(?<century>[23])" +
-            "(?<year>\\d{2})" +
-            "(?<month>0[1-9]|1[0-2])" +
-            "(?<day>0[1-9]|[12]\\d|3[01])" +
-            "(?<governorate>0[1-9]|[1-3]\\d|88)" +
-            "(?<uniqueNumber>(?!000)\\d{3})" +
-            "(?<gender>\\d)" +
-            "(\\d)$"
-    );
+                    "(?<year>\\d{2})" +
+                    "(?<month>0[1-9]|1[0-2])" +
+                    "(?<day>0[1-9]|[12]\\d|3[01])" +
+                    "(?<governorate>0[1-9]|[1-3]\\d|88)" +
+                    "(?<uniqueNumber>(?!000)\\d{3})" +
+                    "(?<gender>\\d)" +
+                    "(\\d)$");
 
     public static Map<String, String> validate(String id) {
-        if (id == null || !id.matches("\\d+")) return null;
+        if (id == null || !id.matches("\\d+"))
+            return null;
 
-        if (id.length() != 14 || !validateChecksum(id)) return null;
+        if (id.length() != 14 || !validateChecksum(id))
+            return null;
 
         Matcher matcher = ID_PATTERN.matcher(id);
-        if (!matcher.matches()) return null;
+        if (!matcher.matches())
+            return null;
 
         String century = matcher.group("century");
         String year = matcher.group("year");
@@ -54,7 +56,7 @@ public class EgyptianIDValidator {
     }
 
     private static boolean validateChecksum(String id) {
-        int[] weights = {2, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 2};
+        int[] weights = { 2, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
         int sum = 0;
         for (int i = 0; i < 13; i++) {
             sum += Character.getNumericValue(id.charAt(i)) * weights[i];
