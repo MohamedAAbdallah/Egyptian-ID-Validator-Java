@@ -1,12 +1,10 @@
 # Egyptian ID Validator (Java)
 
-<!-- Badges to be tested after going public
 [![Latest Tag](https://img.shields.io/github/v/tag/MohamedAAbdallah/Egyptian-ID-Validator-Java?label=latest%20tag)](https://github.com/MohamedAAbdallah/Egyptian-ID-Validator-Java/tags)
-[![Maven Package](https://img.shields.io/maven-central/v/com.mohamedaabdallah/egyptian-id-validator?label=maven)](https://github.com/MohamedAAbdallah/Egyptian-ID-Validator-Java/packages)
-[![Build Status](https://github.com/MohamedAAbdallah/Egyptian-ID-Validator-Java/actions/workflows/maven.yml/badge.svg)](https://github.com/MohamedAAbdallah/Egyptian-ID-Validator-Java/actions/workflows/maven.yml)
-[![License](https://img.shields.io/badge/license-MIT--Custom-blue)](LICENSE.md)
+[![CodeFactor](https://www.codefactor.io/repository/github/mohamedaabdallah/egyptian-id-validator-java/badge)](https://www.codefactor.io/repository/github/mohamedaabdallah/egyptian-id-validator-java)
 [![Last Commit](https://img.shields.io/github/last-commit/MohamedAAbdallah/Egyptian-ID-Validator-Java)](https://github.com/MohamedAAbdallah/Egyptian-ID-Validator-Java/commits/main)
--->
+[![License](https://img.shields.io/badge/license-MIT--Custom-blue)](LICENSE.md)
+
 ---
 
 **Egyptian ID Validator** is a production-ready Java library for validating and extracting structured data from Egyptian national ID numbers.  
