@@ -1,8 +1,12 @@
 name: Publish Maven Package to GitHub Packages
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'pom.xml'
+      - '.github/workflows/maven.yml'
 
 jobs:
   publish:
